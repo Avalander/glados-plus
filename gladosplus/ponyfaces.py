@@ -2,7 +2,7 @@ import json
 import random
 import urllib.request
 
-from glados import commands
+import glados
 
 
 
