@@ -11,6 +11,9 @@ class Module(object):
     def __init__(self):
         self.client = None
 
+    def get_help_list(self):
+        pass
+
     @staticmethod
     def commands(*command_list):
         pass
