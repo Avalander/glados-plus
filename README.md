@@ -36,5 +36,5 @@ Choose helps you decide by selecting a random item from a given list of choices.
 .choose Twilight Sparkle, Pinkie Pie, Fluttershy
 .choose:2 Rainbow Dash, Rarity, Applejack
 ```
-- **.choose <choices>** Chooses one random element from `choices`.
-- **.choose:<amount> <choices>*** Chooses a number of random elements from `choices` equal to `amount`.
+- **.choose {choices}** Chooses one random element from `choices`.
+- **.choose:{amount} {choices}** Chooses a number of random elements from `choices` equal to `amount`.
