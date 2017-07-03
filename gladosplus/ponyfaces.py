@@ -3,34 +3,12 @@ import random
 import urllib.request
 
 import glados
-
+from ._validator import has_content, has_no_content, is_number
 
 
 PONYFACES_URL = 'http://ponyfac.es/api.json'
 GIFS = [ 1, 2, 3, 24, 33, 38, 41, 52, 55, 73, 75, 77, 79, 81, 82, 85, 89, 90, 91, 92, 97, 101, 111, 139, 144, 146, 150, 161, 162 ]
 
-def has_content(text='Some content required'):
-    def outer_wrapper(func):
-        def wrapper(*args):
-            content = args[2]
-            if not content:
-                yield from args[0].client.send_message(args[1].channel, text)
-            else:
-                yield from func(*args)
-        return wrapper
-    return outer_wrapper
-
-def has_no_content(text=None):
-    def outer_wrapper(func):
-        def wrapper(*args):
-            content = args[2]
-            if content:
-                yield from args[0].client.send_message(args[1].channel,
-                    text or 'I don\'t know what to do with "{}"'.format(content))
-            else:
-                yield from func(*args)
-        return wrapper
-    return outer_wrapper
 
 class Ponyfaces(glados.Module):
     def get_help_list(self):
@@ -57,14 +35,8 @@ class Ponyfaces(glados.Module):
         yield from self.client.send_message(message.channel, self._find_image(pony_response))
 
     @glados.Module.commands('ponyface:id', 'pf:id')
-    @has_content('Please, specify a pony id')
+    @has_content('Please, specify a pony id', validator=is_number(1))
     def ponyface_id(self, message, content):
-        try:
-            int(content)
-        except ValueError:
-            yield from self.client.send_message(message.channel,
-                'Pony id must be a positive integer')
-            return
         pony_response = get_json_response('{}/id:{}'.format(PONYFACES_URL, content))
         yield from self.client.send_message(message.channel, self._find_image(pony_response))
 
