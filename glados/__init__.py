@@ -17,3 +17,7 @@ class Module(object):
     @staticmethod
     def commands(*command_list):
         pass
+
+    @staticmethod
+    def rules(*rule_list):
+        pass

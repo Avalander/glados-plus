@@ -33,5 +33,6 @@ Ponyfaces wraps the http://ponyfac.es/ API into some handy commands to add ponie
 
 Choose helps you decide by selecting a random item from a given list of choices.
 ```
-.choose Twilight Sparkle, Pinkie Pie, Fluttershy
+.choose Twilight Sparkle, Pinkie Pie, Fluttershy # Returns one random item from the list
+.choose:<amount> <choices> # Returns *amount* random items from *choices*
 ```
