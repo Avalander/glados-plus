@@ -13,6 +13,12 @@ class Module(object):
 
     def get_help_list(self):
         pass
+    
+    def get_memory(self):
+        pass
+
+    def get_config_dir(self):
+        pass
 
     @staticmethod
     def commands(*command_list):
