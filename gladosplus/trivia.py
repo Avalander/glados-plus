@@ -36,7 +36,7 @@ SUMMARY = '''**Question:** {}
 
 **Answer:** {}
 
-**Correct answerers:** {}
+{} answered correctly.
 '''
 
 
@@ -96,7 +96,7 @@ class Trivia(glados.Module):
         yield from self.client.send_message(message.channel, SUMMARY.format(
             trivia['question'],
             trivia['correct_answer'],
-            ', '.join(correct_answerers) if correct_answerers else 'Nobody, you losers.'
+            ', '.join(correct_answerers) if correct_answerers else 'Nobody'
         ))
 
 
