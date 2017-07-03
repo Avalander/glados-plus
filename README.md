@@ -23,7 +23,7 @@ To use any of the provided modules, simply add the module to your GLaDOS2 settin
 }
 ```
 
-## Modules
+## Modules
 
 ### Ponyfaces
 
