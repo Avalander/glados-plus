@@ -28,3 +28,10 @@ To use any of the provided modules, simply add the module to your GLaDOS2 settin
 ### Ponyfaces
 
 Ponyfaces wraps the http://ponyfac.es/ API into some handy commands to add ponies to your discord channel.
+
+### Choose
+
+Choose helps you decide by selecting a random item from a given list of choices.
+```
+.choose Twilight Sparkle, Pinkie Pie, Fluttershy
+```
