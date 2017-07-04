@@ -55,15 +55,20 @@ class Trivia(glados.Module):
         memory = self.get_memory()
         if not message.channel in memory['open-trivias']:
             trivia = base64_wrap(query_trivia_api, {'amount': 1})[0]
-            choices = trivia['incorrect_answers'] + [trivia['correct_answer']]
-            random.shuffle(choices)
-            trivia['choices'] = choices
+            trivia['choices'] = self._get_choices(trivia)
             trivia['user_answers'] = {}
             memory['open-trivias'][message.channel] = trivia
         else:
             trivia = memory['open-trivias'][message.channel]
         yield from self.client.send_message(message.channel, QUESTION_FORMATS[trivia['type']].format(
             trivia['question'], *trivia['choices']))
+
+    def _get_choices(self, trivia):
+        if trivia['type'] == 'boolean':
+            return ['True', 'False']
+        choices = trivia['incorrect_answers'] + [trivia['correct_answer']]
+        random.shuffle(choices)
+        return choices
 
     @glados.Module.commands('trivia:answer')
     @has_content('Please, provide an answer to the trivia.', is_number(1, 4))
