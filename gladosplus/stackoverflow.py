@@ -12,7 +12,7 @@ class StackOverflow(glados.Module):
         return [
             glados.Help('so', '<search terms>', 'Searches stuff in stackoverflow')
         ]
-    
+
     @glados.Module.commands('so')
     def search(self, message, content):
         query_string = 'order=desc&sort=activity&site=stackoverflow&pagesize=1&q={}'.format(content.replace(' ', '+'))
