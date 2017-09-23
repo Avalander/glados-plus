@@ -26,11 +26,11 @@ def parse_content(content):
     if not content:
         return PONY_QUOTES_API
     elif content.isnumeric():
-        return '{}?{}'.format(PONY_QUOTES_API, urllib.parse.urlencode({
-            'id': content
-        }))
-    else:
         return '{}/{}'.format(PONY_QUOTES_API, int(content))
+    else:
+        return '{}?{}'.format(PONY_QUOTES_API, urllib.parse.urlencode({
+            'pony': content
+        }))
 
 def get_json_response(url):
     with urllib.request.urlopen(url) as response:
