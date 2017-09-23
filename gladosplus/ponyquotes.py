@@ -18,8 +18,7 @@ class PonyQuotes(glados.Module):
             'pony': content
         }) if content else ''
         try:
-            print('"{}"'.format(query_string))
-            result = get_json_response(PONY_QUOTES_API + query_string)
+            result = get_json_response('{}?{}'.format(PONY_QUOTES_API, query_string))
             yield from self.client.send_message(message.channel,
                 '"{quote}" --*{pony}*'.format(**result))
         except urllib.error.HTTPError as error:
