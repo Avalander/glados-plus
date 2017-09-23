@@ -14,15 +14,23 @@ class PonyQuotes(glados.Module):
 
     @glados.Module.commands('pquote')
     def pony_quote(self, message, content):
-        query_string = urllib.parse.urlencode({
-            'pony': content
-        }) if content else ''
+        url = parse_content(content)
         try:
-            result = get_json_response('{}?{}'.format(PONY_QUOTES_API, query_string))
+            result = get_json_response(url)
             yield from self.client.send_message(message.channel,
                 '"{quote}" --*{pony}*'.format(**result))
         except urllib.error.HTTPError as error:
             yield from self.client.send_message(message.channel, 'No quotes found.')
+
+def parse_content(content):
+    if not content:
+        return PONY_QUOTES_API
+    elif content.isnumeric():
+        return '{}?{}'.format(PONY_QUOTES_API, urllib.parse.urlencode({
+            'id': content
+        }))
+    else:
+        return '{}/{}'.format(PONY_QUOTES_API, int(content))
 
 def get_json_response(url):
     with urllib.request.urlopen(url) as response:
