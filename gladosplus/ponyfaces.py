@@ -6,7 +6,7 @@ import glados
 from ._validator import has_content, has_no_content, is_number
 
 
-PONYFACES_URL = 'http://ponyfac.es/api.json'
+PONYFACES_URL = 'http://ponyfaces.hpcodecraft.me/api.json'
 GIFS = [ 1, 2, 3, 24, 33, 38, 41, 52, 55, 73, 75, 77, 79, 81, 82, 85, 89, 90, 91, 92, 97, 101, 111, 139, 144, 146, 150, 161, 162 ]
 
 
