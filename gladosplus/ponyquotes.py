@@ -18,7 +18,7 @@ class PonyQuotes(glados.Module):
             'pony': content
         }) if content else ''
         result = get_json_response(PONY_QUOTES_API + query_string)
-        if result['error']:
+        if 'error' in result:
             yield from self.client.send_message(message.channel, 'No quotes found.')
         else:
             yield from self.client.send_message(message.channel,
