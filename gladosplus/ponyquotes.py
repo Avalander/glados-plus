@@ -26,4 +26,6 @@ class PonyQuotes(glados.Module):
 
 def get_json_response(url):
     with urllib.request.urlopen(url) as response:
-        return json.loads(response)
+        data = response.read()
+        encoding = response.info().get_content_charset('utf-8')
+        return json.loads(data.decode(encoding))
