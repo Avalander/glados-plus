@@ -17,12 +17,14 @@ class PonyQuotes(glados.Module):
         query_string = urllib.parse.urlencode({
             'pony': content
         }) if content else ''
-        result = get_json_response(PONY_QUOTES_API + query_string)
-        if 'error' in result:
-            yield from self.client.send_message(message.channel, 'No quotes found.')
-        else:
+        try:
+            print(query_string)
+            result = get_json_response(PONY_QUOTES_API + query_string)
             yield from self.client.send_message(message.channel,
                 '"{quote}" --*{pony}*'.format(**result))
+        except urllib.error.HTTPError as error:
+            print(error)
+            yield from self.client.send_message(message.channel, 'No quotes found.')
 
 def get_json_response(url):
     with urllib.request.urlopen(url) as response:
